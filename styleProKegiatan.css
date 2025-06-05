@@ -1,0 +1,410 @@
+/* Base styles and reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', -apple-system, Roboto, Helvetica, sans-serif;
+  background-color: rgba(255, 255, 255, 1);
+}
+
+/* Main dashboard layout */
+.dashboard-container {
+  display: flex;
+  gap: 20px;
+  padding: 65px 80px 317px 23px;
+  overflow: hidden;
+}
+
+/* Sidebar styles */
+.sidebar {
+  width: 23%;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar-title {
+  border-radius: 37px;
+  background-color: rgba(0, 162, 168, 1);
+  padding: 68px 66px 659px;
+  font-size: 40px;
+  color: rgba(255, 255, 255, 1);
+  font-weight: 600;
+  text-align: center;
+  width: 100%;
+}
+
+/* Main content area */
+.main-content {
+  width: 77%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Header section */
+.header {
+  align-self: center;
+  display: flex;
+  width: 896px;
+  max-width: 100%;
+  align-items: center;
+  gap: 20px;
+  font-size: 40px;
+  color: rgba(0, 0, 0, 1);
+  text-align: center;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.page-title {
+  font-family: 'Inter', -apple-system, Roboto, Helvetica, sans-serif;
+  font-weight: 600;
+}
+
+.nav-button {
+  background-color: rgba(0, 212, 227, 1);
+  color: white;
+  border: 2px solid rgba(0, 162, 168, 1);
+  padding: 15px 30px;
+  border-radius: 15px;
+  font-weight: 600;
+  font-size: 24px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.nav-button:hover {
+  background-color: rgba(0, 162, 168, 1);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+/* Content area layout */
+.content-area {
+  margin-top: 48px;
+  display: flex;
+  gap: 20px;
+}
+
+/* Upload section */
+.upload-section {
+  width: 67%;
+}
+
+.upload-card {
+  border-radius: 22px;
+  box-shadow: 0px 4px 4px 2px rgba(0, 0, 0, 0.25);
+  display: flex;
+  flex-grow: 1;
+  padding: 15px 11px;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: center;
+}
+
+.upload-card-inner {
+  border-radius: 20px;
+  background-color: rgba(255, 255, 255, 1);
+  display: flex;
+  width: 100%;
+  padding: 17px 32px 37px;
+  flex-direction: column;
+  align-items: start;
+}
+
+.upload-title {
+  color: rgba(0, 0, 0, 1);
+  font-size: 24px;
+  font-family: 'Inter', -apple-system, Roboto, Helvetica, sans-serif;
+  font-weight: 600;
+  text-align: center;
+  margin-left: 11px;
+}
+
+.upload-area {
+  align-self: stretch;
+  margin-top: 18px;
+  width: 100%;
+  padding: 22px 34px;
+}
+
+.upload-area-inner {
+  display: flex;
+  gap: 20px;
+}
+
+.file-drop-area {
+  width: 64%;
+  display: flex;
+  align-items: stretch;
+  gap: 11px;
+  font-family: 'Instrument Sans', -apple-system, Roboto, Helvetica, sans-serif;
+  font-size: 20px;
+  color: rgba(0, 0, 0, 1);
+  font-weight: 500;
+  text-align: center;
+  position: relative;
+}
+
+.file-input {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.upload-icon {
+  aspect-ratio: 1;
+  object-fit: contain;
+  object-position: center;
+  width: 108px;
+  flex-shrink: 0;
+  max-width: 100%;
+}
+
+.upload-instruction {
+  margin: auto 0;
+}
+
+.upload-button {
+  width: 36%;
+  border-radius: 11px;
+  background-color: rgba(0, 212, 227, 1);
+  margin: auto 0;
+  padding: 12px 19px;
+  font-family: 'Instrument Sans', -apple-system, Roboto, Helvetica, sans-serif;
+  font-size: 32px;
+  color: rgba(255, 255, 255, 1);
+  font-weight: 700;
+  text-align: center;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.upload-button:hover {
+  background-color: rgba(0, 162, 168, 1);
+  transform: translateY(-2px);
+}
+
+.uploaded-file {
+  display: flex;
+  margin-top: 28px;
+  align-items: stretch;
+  font-family: 'Inter', -apple-system, Roboto, Helvetica, sans-serif;
+  font-size: 24px;
+  color: rgba(0, 0, 0, 1);
+  font-weight: 600;
+  text-align: center;
+}
+
+.file-icon {
+  aspect-ratio: 0.8;
+  object-fit: contain;
+  object-position: center;
+  width: 103px;
+  flex-shrink: 0;
+  max-width: 100%;
+}
+
+.file-name {
+  align-self: start;
+  margin-top: 58px;
+}
+
+/* Status section */
+.status-section {
+  width: 33%;
+  margin-top: 26px;
+  text-align: center;
+}
+
+.status-card {
+  border-radius: 22px;
+  box-shadow: 0px 4px 4px 2px rgba(0, 0, 0, 0.25);
+}
+
+.approval-status {
+  display: flex;
+  padding: 9px 13px;
+  flex-direction: column;
+  align-items: stretch;
+  font-family: 'Instrument Sans', -apple-system, Roboto, Helvetica, sans-serif;
+  font-weight: 700;
+  justify-content: center;
+}
+
+.status-card-inner {
+  border-radius: 20px;
+  background-color: rgba(255, 255, 255, 1);
+  box-shadow: 0px 4px 4px 2px rgba(0, 0, 0, 0.25);
+  display: flex;
+  padding: 40px 26px;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.status-title {
+  color: rgba(0, 0, 0, 1);
+  font-size: 20px;
+}
+
+.status-badge {
+  border-radius: 7px;
+  background-color: #00e3ae;
+  align-self: center;
+  margin-top: 19px;
+  width: 104px;
+  max-width: 100%;
+  padding: 4px 14px;
+  font-size: 16px;
+  color: rgba(0, 88, 151, 1);
+}
+
+.deadline-status {
+  display: flex;
+  margin-top: 25px;
+  padding-right: 13px;
+  padding-bottom: 9px;
+  align-items: start;
+}
+
+.calendar-icon {
+  aspect-ratio: 1.22;
+  object-fit: contain;
+  object-position: center;
+  width: 83px;
+  margin-top: -19px;
+  flex-shrink: 0;
+}
+
+/* Blinking animation */
+.blink {
+  animation: blink 1.5s infinite;
+}
+
+@keyframes blink {
+  0% { opacity: 1; }
+  50% { opacity: 0.3; }
+  100% { opacity: 1; }
+}
+
+.deadline-info {
+  border-radius: 20px;
+  background-color: rgba(255, 255, 255, 1);
+  box-shadow: 0px 4px 4px 2px rgba(0, 0, 0, 0.25);
+  margin-top: 9px;
+  padding: 21px 58px 65px;
+  flex-grow: 1;
+  flex-shrink: 0;
+  flex-basis: 0;
+  width: fit-content;
+}
+
+.deadline-title {
+  color: rgba(0, 0, 0, 1);
+  font-size: 20px;
+  font-family: 'Instrument Sans', -apple-system, Roboto, Helvetica, sans-serif;
+  font-weight: 700;
+}
+
+.deadline-date {
+  color: rgba(255, 51, 0, 1);
+  font-size: 23px;
+  font-family: 'Poppins', -apple-system, Roboto, Helvetica, sans-serif;
+  font-weight: 500;
+  line-height: 25px;
+  margin-top: 18px;
+}
+
+/* Responsive styles */
+@media (max-width: 991px) {
+  .dashboard-container {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+    padding: 20px 20px 100px;
+  }
+
+  .sidebar, .main-content {
+    width: 100%;
+  }
+
+  .sidebar-title {
+    margin-top: 40px;
+    padding: 20px 20px 100px;
+  }
+
+  .main-content {
+    margin-top: 40px;
+    max-width: 100%;
+  }
+
+  .content-area {
+    flex-direction: column;
+    max-width: 100%;
+    margin-top: 40px;
+  }
+
+  .upload-section, .status-section {
+    width: 100%;
+  }
+
+  .upload-section {
+    margin-top: 22px;
+  }
+
+  .upload-card-inner {
+    max-width: 100%;
+    padding: 17px 20px 37px;
+  }
+
+  .upload-title {
+    margin-left: 10px;
+  }
+
+  .upload-area {
+    max-width: 100%;
+    padding: 22px 20px;
+  }
+
+  .upload-area-inner {
+    flex-direction: column;
+  }
+
+  .file-drop-area {
+    width: 100%;
+    margin-top: 40px;
+  }
+
+  .upload-button {
+    width: 100%;
+    margin-top: 40px;
+    white-space: normal;
+  }
+
+  .file-name {
+    margin-top: 40px;
+  }
+
+  .status-section {
+    margin-top: 40px;
+  }
+
+  .status-badge {
+    white-space: normal;
+  }
+
+  .deadline-info {
+    padding: 21px 20px 65px;
+  }
+
+  .nav-button {
+    font-size: 20px;
+    padding: 12px 20px;
+  }
+}

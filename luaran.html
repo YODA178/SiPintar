@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Luaran Kegiatan</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --cyan: #06b6d4;
+            --cyan-light: #e6f7ff;
+            --green: #00e3ae;
+            --green-light: #e6fff7;
+            --green-dark: #00b38a;
+            --red: #ef4444;
+            --gray: #6b7280;
+            --gray-light: #f3f4f6;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+        
+        body {
+            background-color: #f9fafb;
+            color: #111827;
+            padding: 24px;
+        }
+        
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 32px;
+        }
+        
+        .page-title {
+            font-size: 24px;
+            font-weight: 600;
+            background-color: var(--green);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 227, 174, 0.2);
+            display: inline-block;
+        }
+        
+        .home-btn {
+        background-color: rgba(0, 212, 227, 1);
+        color: white;
+        border: 2px solid rgba(0, 162, 168, 1);
+        padding: 15px 30px;
+        border-radius: 15px;
+        font-weight: 600;
+        font-size: 24px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        .home-btn:hover {
+        background-color: rgba(0, 162, 168, 1);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        
+        .content {
+            display: flex;
+            gap: 24px;
+            flex-wrap: wrap;
+        }
+        
+        .main-card {
+            flex: 1;
+            min-width: 300px;
+            background: white;
+            border-radius: 12px;
+            padding: 24px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            border: 1px solid #e5e7eb;
+        }
+        
+        .poster-container {
+            width: 100%;
+            margin-bottom: 24px;
+            position: relative;
+            border-radius: 8px;
+            overflow: hidden;
+            background-color: var(--gray-light);
+            min-height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .poster-upload {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: var(--gray);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            padding: 20px;
+            text-align: center;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+        
+        .poster-upload:hover {
+            background-color: #e2e8f0;
+        }
+        
+        .poster-upload input[type="file"] {
+            display: none;
+        }
+        
+        .upload-icon {
+            font-size: 24px;
+            margin-bottom: 8px;
+        }
+        
+        .upload-text {
+            font-size: 14px;
+        }
+        
+        .preview-image {
+            max-width: 100%;
+            max-height: 400px;
+            width: auto;
+            height: auto;
+            object-fit: contain;
+            display: none;
+            border-radius: 8px;
+        }
+        
+        .link-input {
+            width: 100%;
+            padding: 12px 16px;
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            margin-top: 8px;
+            font-size: 14px;
+            transition: border-color 0.3s;
+        }
+        
+        .link-input:focus {
+            outline: none;
+            border-color: var(--green);
+            box-shadow: 0 0 0 2px rgba(0, 227, 174, 0.2);
+        }
+        
+        .link-input::placeholder {
+            color: #9ca3af;
+        }
+        
+        .cyan-btn {
+            background-color: var(--green);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 500;
+            cursor: pointer;
+            margin-top: 16px;
+            display: block;
+            width: fit-content;
+            transition: all 0.3s;
+            box-shadow: 0 2px 4px rgba(0, 227, 174, 0.3);
+        }
+        
+        .cyan-btn:hover {
+            background-color: var(--green-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 227, 174, 0.3);
+        }
+        
+        .side-cards {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            min-width: 250px;
+        }
+        
+        .status-card {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            border: 1px solid #e5e7eb;
+        }
+        
+        .card-title {
+            font-weight: 500;
+            margin-bottom: 12px;
+        }
+        
+        .approved-badge {
+            background-color: var(--green-light);
+            color: var(--green);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+        
+        .deadline-card {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .alarm-icon {
+            width: 24px;
+            height: 24px;
+            background-color: var(--red);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 12px;
+        }
+        
+        .deadline-text {
+            flex: 1;
+        }
+        
+        .deadline-date {
+            color: var(--red);
+            font-weight: 500;
+            margin-top: 4px;
+        }
+        
+        @media (max-width: 768px) {
+            .content {
+                flex-direction: column;
+            }
+            
+            .header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 16px;
+            }
+            
+            .preview-image {
+                max-height: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1 class="page-title">Laporan Kegiatan</h1>
+        <button class="home-btn" onclick="location.href='index.html'">Home</button>
+    </div>
+    
+    <div class="content">
+        <div class="main-card">
+            <div class="poster-container" id="posterContainer">
+                <div class="poster-upload" id="posterUpload">
+                    <input type="file" id="fileInput" accept="image/*">
+                    <div class="upload-icon">📁</div>
+                    <div class="upload-text">Klik untuk mengunggah poster kegiatan</div>
+                </div>
+                <img id="previewImage" class="preview-image" alt="Preview">
+            </div>
+            <div>
+                <label for="link">Link Kegiatan</label>
+                <input type="text" id="link" class="link-input" placeholder="https://www.example.com">
+            </div>
+            <button id="submitBtn" class="cyan-btn">Click Here</button>
+        </div>
+        
+        <div class="side-cards">
+            <div class="status-card">
+                <div class="card-title">DPL (Dosen Pembimbing Lapangan)</div>
+                <div class="approved-badge">✓ Approved</div>
+            </div>
+            
+            <div class="status-card">
+                <div class="deadline-card">
+                    <div class="alarm-icon">!</div>
+                    <div class="deadline-text">
+                        <div class="card-title">Batas Persetujuan</div>
+                        <div class="deadline-date">29 November 2025 23.59</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Fungsi untuk upload gambar
+        document.getElementById('posterUpload').addEventListener('click', function() {
+            document.getElementById('fileInput').click();
+        });
+
+        document.getElementById('fileInput').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(event) {
+                    const previewImage = document.getElementById('previewImage');
+                    const posterUpload = document.getElementById('posterUpload');
+                    const posterContainer = document.getElementById('posterContainer');
+                    
+                    previewImage.src = event.target.result;
+                    previewImage.style.display = 'block';
+                    
+                    // Sembunyikan area upload
+                    posterUpload.style.display = 'none';
+                    
+                    // Sesuaikan ukuran container dengan gambar
+                    const img = new Image();
+                    img.onload = function() {
+                        // Untuk gambar landscape (lebar > tinggi)
+                        if (img.width > img.height) {
+                            previewImage.style.maxHeight = '400px';
+                            previewImage.style.width = '100%';
+                            previewImage.style.height = 'auto';
+                        } 
+                        // Untuk gambar portrait (tinggi > lebar)
+                        else {
+                            previewImage.style.maxWidth = '100%';
+                            previewImage.style.height = '400px';
+                            previewImage.style.width = 'auto';
+                        }
+                    };
+                    img.src = event.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+
+        // Fungsi untuk tombol click here
+        document.getElementById('submitBtn').addEventListener('click', function() {
+            const linkInput = document.getElementById('link').value.trim();
+            if (linkInput) {
+                // Validasi URL sederhana
+                if (!linkInput.startsWith('http://') && !linkInput.startsWith('https://')) {
+                    window.open('https://' + linkInput, '_blank');
+                } else {
+                    window.open(linkInput, '_blank');
+                }
+            } else {
+                alert('Silakan masukkan link terlebih dahulu');
+            }
+        });
+    </script>
+</body>
+</html>

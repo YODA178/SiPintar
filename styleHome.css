@@ -1,0 +1,181 @@
+/* Base styles */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Poppins, -apple-system, Roboto, Helvetica, sans-serif;
+}
+
+/* Profile container */
+.profile-container {
+  background-color: rgba(255, 255, 255, 1);
+  display: flex;
+  padding: 47px 71px 170px;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* Personal information section */
+.personal-info {
+  align-self: flex-end;
+  display: flex;
+  margin-right: 66px;
+  align-items: flex-start;
+  gap: 40px 41px;
+  font-size: 16px;
+  color: rgba(0, 0, 0, 1);
+  flex-wrap: wrap;
+}
+
+.name-container {
+  align-self: stretch;
+  display: flex;
+  margin-top: auto;
+  margin-bottom: auto;
+  flex-direction: column;
+  align-items: stretch;
+  text-align: center;
+}
+
+.info-label {
+  font-weight: 700;
+  align-self: flex-start;
+  margin: 0;
+  font-size: 16px;
+}
+
+.info-value {
+  font-weight: 400;
+  margin-top: 7px;
+  margin-bottom: 0;
+}
+
+.about-container .info-value {
+  margin-top: 4px;
+}
+
+.empty-container, .separator {
+  text-align: center;
+}
+
+/* Kuliah section */
+.kuliah-section {
+  align-self: center;
+  margin-top: 36px;
+  margin-left: 12px;
+  width: 100%;
+  max-width: 1043px;
+}
+
+.kuliah-content {
+  gap: 20px;
+  display: flex;
+}
+
+.kuliah-text-column {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  line-height: normal;
+  width: 35%;
+  margin-left: 0;
+}
+
+.kuliah-heading {
+  color: rgba(0, 0, 0, 1);
+  font-size: 100px;
+  font-family: Mouse Memoirs, -apple-system, Roboto, Helvetica, sans-serif;
+  font-weight: 400;
+  margin-top: 69px;
+  margin-bottom: 0;
+}
+
+.highlight {
+  color: rgba(85, 111, 183, 1);
+}
+
+.kuliah-image-column {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  line-height: normal;
+  width: 65%;
+  margin-left: 20px;
+}
+
+.kuliah-image {
+  aspect-ratio: 2.42;
+  object-fit: contain;
+  object-position: center;
+  width: 100%;
+  flex-grow: 1;
+}
+
+/* Profile image */
+.profile-image {
+  aspect-ratio: 0.78;
+  object-fit: contain;
+  object-position: center;
+  width: 100%;
+  border-radius: 172px 172px 0 69px;
+  margin-top: 162px;
+  max-width: 1268px;
+}
+
+/* Media queries */
+@media (max-width: 991px) {
+  .profile-container {
+    padding: 47px 20px 100px;
+  }
+
+  .personal-info {
+    margin-right: 10px;
+  }
+
+  .kuliah-section {
+    max-width: 100%;
+  }
+
+  .kuliah-content {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+  }
+
+  .kuliah-text-column {
+    width: 100%;
+  }
+
+  .kuliah-heading {
+    margin-top: 40px;
+    font-size: 40px;
+  }
+
+  .kuliah-image-column {
+    width: 100%;
+  }
+
+  .kuliah-image {
+    max-width: 100%;
+    margin-top: 40px;
+  }
+
+  .profile-image {
+    max-width: 100%;
+    margin-top: 40px;
+  }
+}
+
+@media (max-width: 640px) {
+  .profile-container {
+    padding-top: 19px;
+  }
+
+  .info-label {
+    font-weight: 600;
+  }
+
+  .name-container .info-value,
+  .about-container .info-value {
+    font-weight: 200;
+  }
+}

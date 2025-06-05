@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Si Pintar - Proposal Kegiatan</title>
+  <link rel="stylesheet" href="styleProKegiatan.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Instrument+Sans:wght@400;500;700&family=Quicksand:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <main class="dashboard-container">
+    <aside class="sidebar">
+      <h1 class="sidebar-title">Si Pintar</h1>
+    </aside>
+
+    <section class="main-content">
+      <header class="header">
+        <h1 class="page-title">Proposal Kegiatan</h1>
+        <nav>
+          <button class="nav-button" onclick="location.href='index.html'">Home</button>
+        </nav>
+      </header>
+
+      <div class="content-area">
+        <section class="upload-section">
+          <div class="upload-card">
+            <div class="upload-card-inner">
+              <h2 class="upload-title">Unggah Proposal Kegiatan</h2>
+
+              <div class="upload-area">
+                <div class="upload-area-inner">
+                  <div class="file-drop-area">
+                    <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/a1f913599c2296816554e52565b1764bc1e64e05?placeholderIfAbsent=true&apiKey=014bf2bade2f421498c633a5ee6c605e" class="upload-icon" alt="Upload icon">
+                    <p class="upload-instruction">Pilih file atau seret ke sini</p>
+                    <input type="file" id="fileInput" class="file-input" accept=".pdf,.doc,.docx">
+                  </div>
+
+                  <button class="upload-button" id="uploadBtn">Unggah</button>
+                </div>
+              </div>
+
+              <div class="uploaded-file" id="uploadedFile">
+                <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/58df7afa9ef11537aff3157453caa6b1761b270d?placeholderIfAbsent=true&apiKey=014bf2bade2f421498c633a5ee6c605e" class="file-icon" alt="PDF file">
+                <p class="file-name">contoh_Proposal.pdf</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <aside class="status-section">
+          <div class="status-card approval-status">
+            <div class="status-card-inner">
+              <h3 class="status-title">DPL (Dosen Pembimbing Lapangan)</h3>
+              <span class="status-badge">Approved</span>
+            </div>
+          </div>
+
+          <div class="status-card deadline-status">
+            <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/5f36b6e040a885eb9884dc0f1a396d29e84fc3be?placeholderIfAbsent=true&apiKey=014bf2bade2f421498c633a5ee6c605e" class="calendar-icon blink" alt="Calendar">
+            <div class="deadline-info">
+              <h3 class="deadline-title">Batas Persetujuan</h3>
+              <p class="deadline-date">29 November<br>2025 23.59</p>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </section>
+  </main>
+  <script>
+    document.getElementById('uploadBtn').addEventListener('click', function() {
+      const fileInput = document.getElementById('fileInput');
+      if (fileInput.files.length > 0) {
+        const uploadedFile = document.getElementById('uploadedFile');
+        uploadedFile.innerHTML = `
+          <img src="https://cdn.builder.io/api/v1/image/assets/TEMP/58df7afa9ef11537aff3157453caa6b1761b270d?placeholderIfAbsent=true&apiKey=014bf2bade2f421498c633a5ee6c605e" class="file-icon" alt="PDF file">
+          <p class="file-name">${fileInput.files[0].name}</p>
+        `;
+        alert('File berhasil diunggah!');
+      } else {
+        alert('Silakan pilih file terlebih dahulu!');
+      }
+    });
+  </script>
+</body>
+</html>

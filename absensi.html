@@ -1,0 +1,770 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Absensi Harian</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+        background-color: #f5f5f5;
+        color: #333;
+    }
+
+    .container {
+        display: flex;
+        min-height: 100vh;
+        flex-direction: column;
+    }
+
+    .main-content {
+        flex: 1;
+        padding: 20px;
+        overflow: hidden;
+    }
+
+    .header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+
+    .page-title {
+        font-size: 24px;
+        font-weight: 600;
+        color: #333;
+    }
+
+    .nav-bar {
+        display: flex;
+        align-items: center;
+        background-color: #38b2ac;
+        padding: 10px 20px;
+        border-radius: 0 0 10px 10px;
+        margin-bottom: 20px;
+    }
+
+    .logo {
+        width: 40px;
+        height: 40px;
+        background-color: white;
+        border-radius: 50%;
+        margin-right: 15px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        color: #38b2ac;
+    }
+
+    .nav-title {
+        color: white;
+        font-weight: 600;
+        flex-grow: 1;
+    }
+
+    .nav-button {
+        background-color: white;
+        color: #38b2ac;
+        border: none;
+        padding: 8px 15px;
+        border-radius: 20px;
+        font-weight: 500;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .nav-button:hover {
+        background-color: #e6fffa;
+        transform: translateY(-2px);
+    }
+
+    .search-container {
+        margin-bottom: 20px;
+        position: relative;
+    }
+
+    .search-input {
+        width: 100%;
+        padding: 10px 15px;
+        padding-right: 40px;
+        border: 1px solid #ddd;
+        border-radius: 20px;
+        font-size: 14px;
+        transition: all 0.3s ease;
+    }
+
+    .search-input:focus {
+        outline: none;
+        border-color: #38b2ac;
+        box-shadow: 0 0 0 2px rgba(56, 178, 172, 0.2);
+    }
+
+    .search-icon {
+        position: absolute;
+        right: 15px;
+        top: 50%;
+        transform: translateY(-50%);
+        color: #999;
+    }
+
+    .table-wrapper {
+        position: relative;
+        overflow-x: auto;
+        overflow-y: auto;
+        margin-bottom: 20px;
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        max-height: 70vh;
+        width: 100%;
+    }
+
+    table {
+        table-layout: auto;
+        width: 100%;
+        border-collapse: collapse;
+        border-spacing: 0;
+        min-width: 1000px;
+    }
+
+    th, td {
+        padding: 6px 10px;
+        text-align: left;
+        border-bottom: 1px solid #eee;
+        white-space: nowrap;
+        font-size: 12px;
+    }
+
+    th {
+        background-color: #f8f9fa;
+        font-weight: 500;
+        position: sticky;
+        top: 0;
+        z-index: 10;
+    }
+
+    th.fixed-column, td.fixed-column {
+        position: sticky;
+        background-color: white;
+        z-index: 5;
+    }
+
+    th.fixed-column {
+        z-index: 15;
+    }
+
+    .no-col {
+        left: 0;
+        width: 50px;
+    }
+
+    .name-col {
+        left: 50px;
+        width: 150px;
+    }
+
+    .nim-col {
+        left: 200px;
+        width: 100px;
+    }
+
+    .class-col {
+        left: 300px;
+        width: 80px;
+    }
+
+    .status-dropdown {
+        font-size: 16px;
+        padding: 6px 20px;
+        border-radius: 5px;
+        font-weight: bold;
+        width: 100%;
+        cursor: pointer;
+        border: 1px solid #ccc;
+        color: #000000;
+        text-align: center;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+    }
+
+    /* Warna latar belakang sesuai status */
+    .status-H {
+        background-color: #c6f6d5; /* Hijau */
+        color: #22543d;
+    }
+
+    .status-I {
+        background-color: #feebc8; /* Kuning */
+        color: #744210;
+    }
+
+    .status-A {
+        background-color: #fed7d7; /* Merah muda */
+        color: #742a2a;
+    }
+
+    .status-S {
+        background-color: #e9d8fd; /* Ungu */
+        color: #44337a;
+    }
+
+    /* Untuk mempercantik tampilan tabel */
+    table {
+        border-collapse: collapse;
+        width: 100%;
+        min-width: 1000px;
+    }
+
+    th, td {
+        padding: 8px;
+        border: 1px solid #ddd;
+        white-space: nowrap;
+        text-align: center;
+    }
+
+    /* Tambahan style untuk status text */
+    .status-text {
+        display: inline-block;
+        font-weight: bold;
+        pointer-events: none;
+    }
+
+    .approval-row {
+        background-color: #f0fff4;
+        font-weight: 500;
+    }
+
+    .approval-cell {
+        text-align: center;
+    }
+
+    .sidebar {
+        padding: 20px;
+        background-color: white;
+        border-top: 1px solid #eee;
+        box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.05);
+    }
+
+    .stats-card {
+        background-color: #f8f9fa;
+        border-radius: 10px;
+        padding: 15px;
+        margin-bottom: 20px;
+    }
+
+    .stats-title {
+        font-size: 18px;
+        font-weight: 600;
+        margin-bottom: 15px;
+        color: #333;
+    }
+
+    .stat-item {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 10px;
+        padding-bottom: 10px;
+        border-bottom: 1px solid #eee;
+    }
+
+    .stat-label {
+        font-weight: 500;
+        color: #666;
+    }
+
+    .stat-value {
+        font-weight: 600;
+    }
+
+    @media (min-width: 768px) {
+        .container {
+            flex-direction: row;
+        }
+        .sidebar {
+            width: 300px;
+            border-top: none;
+            border-left: 1px solid #eee;
+        }
+        .table-wrapper {
+            max-height: calc(100vh - 200px);
+        }
+    }
+
+    @media (max-width: 768px) {
+        th, td {
+            font-size: 10px;
+            padding: 4px 6px;
+        }
+
+        .status-dropdown {
+            font-size: 10px;
+        }
+
+        .table-wrapper {
+            max-height: 60vh;
+        }
+    }
+
+    ::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+        background: #f1f1f1;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: #c1c1c1;
+        border-radius: 4px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+        background: #a8a8a8;
+    }
+
+    .status-container {
+        position: relative;
+        width: 100%;
+        height: 100%;
+    }
+
+    .status-dropdown {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0;
+        cursor: pointer;
+        z-index: 1;
+    }
+
+    .status-text {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        font-weight: bold;
+        pointer-events: none;
+        z-index: 0;
+    }
+
+    .status-container {
+        width: 40px;
+        height: 30px;
+        margin: 0 auto;
+        position: relative;
+    }
+</style>
+
+</head>
+<body>
+    <div class="container">
+        <div class="main-content">
+            <div class="nav-bar">
+                <div class="logo">A</div>
+                <div class="nav-title">Dashboard Absensi</div>
+                <button class="nav-button"onclick="location.href='index.html'">Home</button>
+            </div>
+
+            <h1 class="page-title">Absensi Harian</h1>
+
+            <div class="search-container">
+                <input type="text" class="search-input" placeholder="Search nama atau NIM...">
+                <span class="search-icon">🔍</span>
+            </div>
+
+            <div class="table-wrapper">
+                <table id="attendanceTable">
+                    <thead>
+                        <tr>
+                            <th class=>No</th>
+                            <th class=>Nama</th>
+                            <th class=>NIM</th>
+                            <th class=>Prodi</th>
+                            <th>1</th>
+                            <th>2</th>
+                            <th>3</th>
+                            <th>4</th>
+                            <th>5</th>
+                            <th>6</th>
+                            <th>7</th>
+                            <th>8</th>
+                            <th>9</th>
+                            <th>10</th>
+                            <th>11</th>
+                            <th>12</th>
+                            <th>13</th>
+                            <th>14</th>
+                            <th>15</th>
+                            <th>16</th>
+                            <th>17</th>
+                            <th>18</th>
+                            <th>19</th>
+                            <th>20</th>
+                            <th>21</th>
+                            <th>22</th>
+                            <th>23</th>
+                            <th>24</th>
+                            <th>25</th>
+                            <th>26</th>
+                            <th>27</th>
+                            <th>28</th>
+                            <th>29</th>
+                            <th>30</th>
+                            <th>31</th>
+                            <th>32</th>
+                            <th>33</th>
+                            <th>34</th>
+                            <th>35</th>
+                            <th>36</th>
+                            <th>37</th>
+                            <th>38</th>
+                            <th>39</th>
+                            <th>40</th>
+                            <th>41</th>
+                            <th>42</th>
+                            <th>43</th>
+                            <th>44</th>
+                            <th>45</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+  <td class=>1</td>
+  <td class=>Nanda</td>
+  <td class=>12345</td>
+  <td class=>TI</td>
+  <script>
+    for (let i = 1; i <= 45; i++) {
+      document.write(`
+        <td>
+          <div class="status-container">
+            <select class="status-dropdown">
+              <option value="H">H</option>
+              <option value="I">I</option>
+              <option value="A">A</option>
+              <option value="S">S</option>
+            </select>
+            <span class="status-text"></span>
+          </div>
+        </td>
+      `);
+    }
+  </script>
+</tr>
+
+<script>
+  const students = [
+    { no: 2, name: "Yogi", nim: "234567", kelas: "TI" },
+    { no: 3, name: "Rifan", nim: "345678", kelas: "TI" },
+    { no: 4, name: "Yoga", nim: "456789", kelas: "TI" },
+    { no: 5, name: "imam", nim: "567890", kelas: "TI" }
+  ];
+
+  students.forEach(student => {
+    document.write(`<tr>`);
+    document.write(`<td class=>${student.no}</td>`);
+    document.write(`<td class=>${student.name}</td>`);
+    document.write(`<td class=>${student.nim}</td>`);
+    document.write(`<td class=>${student.kelas}</td>`);
+    
+    for (let i = 1; i <= 45; i++) {
+      document.write(`
+        <td>
+          <div class="status-container">
+            <select class="status-dropdown">
+              <option value="H">H</option>
+              <option value="I">I</option>
+              <option value="A">A</option>
+              <option value="S">S</option>
+            </select>
+            <span class="status-text"></span>
+          </div>
+        </td>
+      `);
+    }
+
+    document.write(`</tr>`);
+  });
+</script>
+
+                        <tr class="approval-row">
+                            <td class="fixed-column no-col" colspan="4">Persetujuan DPL</td>
+                            <td class="approval-cell">✅</td>
+                            <td class="approval-cell">✅</td>
+                            <td class="approval-cell">✅</td>
+                            <td class="approval-cell">✅</td>
+                            <td class="approval-cell">✅</td>
+                            <td class="approval-cell">✅</td>
+                            <td class="approval-cell">✅</td>
+                            <td class="approval-cell">✅</td>
+                            <td class="approval-cell">✅</td>
+                            <td class="approval-cell">✅</td>
+                            <td class="approval-cell">✅</td>
+                            <td class="approval-cell">✅</td>
+                            <td class="approval-cell">✅</td>
+                            <td class="approval-cell">✅</td>
+                            <td class="approval-cell">✅</td>
+                            <td class="approval-cell">✅</td>
+                            <td class="approval-cell">✅</td>
+                            <td class="approval-cell">✅</td>
+                            <td class="approval-cell">✅</td>
+                            <td class="approval-cell">✅</td>
+                            <td class="approval-cell">✅</td>
+                            <td class="approval-cell">✅</td>
+                            <td class="approval-cell">✅</td>
+                            <td class="approval-cell">✅</td>
+                            <td class="approval-cell">✅</td>
+                            <td class="approval-cell">✅</td>
+                            <td class="approval-cell">✅</td>
+                            <td class="approval-cell">✅</td>
+                            <td class="approval-cell">✅</td>
+                            <td class="approval-cell">✅</td>
+                            <td class="approval-cell">✅</td>
+                            <td class="approval-cell">✅</td>
+                            <td class="approval-cell">✅</td>
+                            <td class="approval-cell">✅</td>
+                            <td class="approval-cell">✅</td>
+                            <td class="approval-cell">✅</td>
+                            <td class="approval-cell">✅</td>
+                            <td class="approval-cell">✅</td>
+                            <td class="approval-cell">✅</td>
+                            <td class="approval-cell">✅</td>
+                            <td class="approval-cell">✅</td>
+                            <td class="approval-cell">✅</td>
+                            <td class="approval-cell">✅</td>
+                            <td class="approval-cell">✅</td>
+                            <td class="approval-cell">✅</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="stats-card">
+                <div class="stats-title">Statistik Absensi</div>
+                <div class="stat-item">
+                    <span class="stat-label">Total Hadir</span>
+                    <span class="stat-value" id="total-hadir">38</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Total Izin</span>
+                    <span class="stat-value" id="total-izin">0</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Total Alpha</span>
+                    <span class="stat-value" id="total-alpha">2</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Total Sakit</span>
+                    <span class="stat-value" id="total-sakit">10</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-label">Persentase Hadir</span>
+                    <span class="stat-value" id="presentase-hadir">76%</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Update dropdown styles when selection changes
+            const dropdowns = document.querySelectorAll('.status-dropdown');
+            const searchInput = document.querySelector('.search-input');
+            const attendanceTable = document.getElementById('attendanceTable');
+            const rows = attendanceTable.querySelectorAll('tbody tr:not(.approval-row)');
+            
+            // Initialize dropdown styles
+            dropdowns.forEach(dropdown => {
+                updateDropdownStyle(dropdown);
+                
+                dropdown.addEventListener('change', function() {
+                    updateDropdownStyle(this);
+                    updateTotals();
+                });
+            });
+            
+            // Search functionality
+            searchInput.addEventListener('input', function() {
+                const searchTerm = this.value.toLowerCase();
+                
+                rows.forEach(row => {
+                    const name = row.querySelector('.name-col').textContent.toLowerCase();
+                    const nim = row.querySelector('.nim-col').textContent.toLowerCase();
+                    
+                    if (name.includes(searchTerm)) {
+                        row.style.display = '';
+                    } else if (nim.includes(searchTerm)) {
+                        row.style.display = '';
+                    } else {
+                        row.style.display = 'none';
+                    }
+                });
+            });
+            
+            // Function to update dropdown style
+            function updateDropdownStyle(dropdown) {
+                // Remove all status classes
+                dropdown.classList.remove('status-H', 'status-I', 'status-A', 'status-S');
+                
+                // Add the appropriate class based on selection
+                const selectedValue = dropdown.value;
+                if (selectedValue) {
+                    dropdown.classList.add(`status-${selectedValue}`);
+                }
+            }
+            
+            // Function to update the totals in the sidebar
+            function updateTotals() {
+                let hadir = 0;
+                let izin = 0;
+                let alpha = 0;
+                let sakit = 0;
+                
+                dropdowns.forEach(dropdown => {
+                    if (dropdown.value === 'H') hadir++;
+                    if (dropdown.value === 'I') izin++;
+                    if (dropdown.value === 'A') alpha++;
+                    if (dropdown.value === 'S') sakit++;
+                });
+                
+                const total = hadir + izin + alpha + sakit;
+                const presentase = total > 0 ? Math.round((hadir / total) * 100) : 0;
+                
+                document.getElementById('total-hadir').textContent = hadir;
+                document.getElementById('total-izin').textContent = izin;
+                document.getElementById('total-alpha').textContent = alpha;
+                document.getElementById('total-sakit').textContent = sakit;
+                document.getElementById('presentase-hadir').textContent = `${presentase}%`;
+            }
+            
+            // Initialize totals
+            updateTotals();
+        });
+    </script>
+<script>
+function updateStatusColor(select) {
+    const container = select.closest('.status-container');
+    const statusText = container.querySelector('.status-text');
+    const value = select.value;
+    
+    // Remove previous status classes
+    container.classList.remove('status-H', 'status-I', 'status-A', 'status-S');
+    // Add new status class
+    container.classList.add('status-' + value);
+    // Update the visible text
+    statusText.textContent = value;
+}
+
+document.addEventListener('DOMContentLoaded', function () {
+    const dropdowns = document.querySelectorAll('.status-dropdown');
+    dropdowns.forEach(dropdown => {
+        // Set initial state
+        updateStatusColor(dropdown);
+        
+        dropdown.addEventListener('change', function () {
+            updateStatusColor(this);
+        });
+    });
+});
+</script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Update dropdown styles when selection changes
+        const dropdowns = document.querySelectorAll('.status-dropdown');
+        const searchInput = document.querySelector('.search-input');
+        const attendanceTable = document.getElementById('attendanceTable');
+        const rows = attendanceTable.querySelectorAll('tbody tr:not(.approval-row)');
+        
+        // Initialize dropdown styles
+        dropdowns.forEach(dropdown => {
+            updateDropdownStyle(dropdown);
+            
+            dropdown.addEventListener('change', function() {
+                updateDropdownStyle(this);
+                updateTotals();
+            });
+        });
+        
+        // Search functionality - FIXED VERSION
+        searchInput.addEventListener('input', function() {
+            const searchTerm = this.value.trim().toLowerCase();
+            
+            if (searchTerm === '') {
+                // Show all rows if search is empty
+                rows.forEach(row => {
+                    row.style.display = '';
+                });
+                return;
+            }
+            
+            rows.forEach(row => {
+                const cells = row.querySelectorAll('td');
+                const name = cells[1].textContent.toLowerCase(); // Kolom nama (indeks 1)
+                const nim = cells[2].textContent.toLowerCase();  // Kolom NIM (indeks 2)
+                
+                if (name.includes(searchTerm) || nim.includes(searchTerm)) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        });
+        
+        // Function to update dropdown style
+        function updateDropdownStyle(dropdown) {
+            // Remove all status classes
+            dropdown.classList.remove('status-H', 'status-I', 'status-A', 'status-S');
+            
+            // Add the appropriate class based on selection
+            const selectedValue = dropdown.value;
+            if (selectedValue) {
+                dropdown.classList.add(`status-${selectedValue}`);
+            }
+        }
+        
+        // Function to update the totals in the sidebar
+        function updateTotals() {
+            let hadir = 0;
+            let izin = 0;
+            let alpha = 0;
+            let sakit = 0;
+            
+            dropdowns.forEach(dropdown => {
+                if (dropdown.value === 'H') hadir++;
+                if (dropdown.value === 'I') izin++;
+                if (dropdown.value === 'A') alpha++;
+                if (dropdown.value === 'S') sakit++;
+            });
+            
+            const total = hadir + izin + alpha + sakit;
+            const presentase = total > 0 ? Math.round((hadir / total) * 100) : 0;
+            
+            document.getElementById('total-hadir').textContent = hadir;
+            document.getElementById('total-izin').textContent = izin;
+            document.getElementById('total-alpha').textContent = alpha;
+            document.getElementById('total-sakit').textContent = sakit;
+            document.getElementById('presentase-hadir').textContent = `${presentase}%`;
+        }
+        
+        // Initialize totals
+        updateTotals();
+    });
+</script>
+</body>
+</html>

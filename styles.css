@@ -1,0 +1,178 @@
+/* Base styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+}
+
+/* Login container */
+.login-container {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  background-color: #fff;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Background image */
+.background-image {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Overlay elements */
+.overlay-light {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 60%;
+  height: 100%;
+  border-radius: 0 360px 360px 0;
+  background-color: #fff;
+  opacity: 0.68;
+}
+
+.overlay-teal {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 50%;
+  height: 100%;
+  border-radius: 0 360px 360px 0;
+  background-color: #029ba1;
+  opacity: 0.68;
+}
+
+/* Login form container */
+.login-form-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 494px;
+  background-color: #fff;
+  border-radius: 66px;
+  border: 5px solid #00a2a8;
+  box-shadow: 0 4px 18.7px 7px rgba(255, 255, 255, 0.64);
+  padding: 40px;
+  z-index: 1;
+}
+
+/* Logo */
+.logo {
+  width: 396px;
+  height: 147px;
+  margin-bottom: 40px;
+  object-fit: contain;
+}
+
+/* Login form */
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+}
+
+/* Input fields */
+.input-field {
+  width: 100%;
+  height: 39px;
+  border-radius: 100px;
+  border: 1px solid #000;
+  background-color: transparent;
+  padding: 0 20px;
+  font-family: 'Inter', sans-serif;
+  font-size: 20px;
+  color: #333;
+}
+
+.input-field::placeholder {
+  color: #bdbdbd;
+}
+
+.password-field {
+  height: 38px;
+}
+
+/* Login button */
+.login-button {
+  width: 100%;
+  height: 39px;
+  border-radius: 100px;
+  background-color: #0059ff;
+  color: #fff;
+  font-family: 'Poppins', sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.login-button:hover {
+  background-color: #0044cc;
+}
+
+/* Forgot password link */
+.forgot-password {
+  text-align: center;
+  color: #737373;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 20px;
+  margin-top: 20px;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.forgot-password:hover {
+  text-decoration: underline;
+}
+
+/* Media queries */
+@media (max-width: 991px) {
+  .overlay-light {
+    width: 70%;
+  }
+  
+  .overlay-teal {
+    width: 60%;
+  }
+
+  .login-form-container {
+    width: 80%;
+  }
+
+  .logo {
+    width: 80%;
+    height: auto;
+  }
+}
+
+@media (max-width: 640px) {
+  .overlay-light,
+  .overlay-teal {
+    width: 100%;
+    border-radius: 0;
+  }
+
+  .login-form-container {
+    width: 90%;
+    padding: 30px;
+    border-radius: 40px;
+  }
+
+  .logo {
+    width: 90%;
+    margin-bottom: 20px;
+  }
+}
