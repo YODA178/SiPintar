@@ -58,9 +58,14 @@ Untuk fitur upload, file hanya ditampilkan di frontend tanpa penyimpanan ke data
 
 Kontributor
 1.Yogi Ardiansyah
+
 2.Nanda Sahita
+
 3.M. Yoga Alfa Reza
+
 4.M. Rifan Fatoni
+
 5.M. Imam taufiqurohman
+
 
 © 2025 - Tugas UAS Rekayasa Perangkat Lunak.
