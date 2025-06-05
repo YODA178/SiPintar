@@ -41,6 +41,8 @@ Struktur File
 ├── login.html            # Halaman login
 ├── luaran.html           # Halaman luaran kegiatan
 └── ProposalKegiatan.html # Halaman proposal kegiatan
+
+
 Teknologi Used
 Frontend: HTML5, CSS3, JavaScript.
 Styling: Framework CSS custom dengan Google Fonts (Poppins, Inter).
