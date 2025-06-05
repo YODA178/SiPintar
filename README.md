@@ -57,6 +57,7 @@ Proyek ini tidak menggunakan backend (data disimulasikan di frontend).
 Untuk fitur upload, file hanya ditampilkan di frontend tanpa penyimpanan ke database.
 
 Kontributor
+
 1.Yogi Ardiansyah
 
 2.Nanda Sahita
